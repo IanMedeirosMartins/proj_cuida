@@ -1,0 +1,420 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f7fafd;
+  color: #1f2937;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 40px;
+}
+
+nav a {
+  margin-left: 20px;
+  color: #1f2937;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #2563eb;
+}
+
+/* MAIN LAYOUT */
+main {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+}
+
+.postos {
+  width: 60%;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  width: 250px;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px 0 0 6px;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-left: none;
+  background-color: #f1f5f9;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.disponivel {
+  background-color: #22c55e;
+  color: white;
+}
+
+.falta {
+  background-color: #ef4444;
+  color: white;
+}
+
+.denunciar {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.denunciar:hover {
+  background-color: #2563eb;
+}
+
+/* GRUPO COMUNITÁRIO */
+.grupo {
+  background-color: #1e293b;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.whatsapp-btn {
+  margin-top: 1rem;
+  background-color: #22c55e;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+  background-color: #16a34a;
+}
+
+/* MAPA */
+.mapa {
+  width: 35%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 500px; /* Aumentei a altura */
+  min-height: 500px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Ocupa todo o espaço disponível */
+}
+
+.conteudo {
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card-sobre,
+.card-contato {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  max-width: 700px;
+  width: 100%;
+}
+
+.card-sobre h2,
+.card-contato h2 {
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.card-sobre p,
+.card-contato p {
+  color: #374151;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+#saibaMais,
+.card-contato button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#saibaMais:hover,
+.card-contato button:hover {
+  background-color: #2563eb;
+}
+
+.card-contato form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-contato input,
+.card-contato textarea {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+}
+
+.mensagem-sucesso {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+/* --- Modal denúncia --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+
+.modal-content button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-content button:hover {
+  background-color: #dc2626;
+}
+
+.fechar {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.fechar:hover {
+  color: #000;
+}
+
+#respostaDenuncia {
+  margin-top: 10px;
+  font-weight: 600;
+}
+/* --- CHATBOT --- */
+.chatbot-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #00ff15;
+  color: white;
+  border: none;
+  border-radius: 40%;
+  width: 65px;
+  height: 65px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.chatbot-button:hover {
+  background-color:#07af07;
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  left: 30px;
+  width: 320px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  font-family: "Arial", sans-serif;
+}
+
+#chatbot-header {
+  background-color: #07af07;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.chatbot-body {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bot-message,
+.user-message {
+  background-color: #f3f4f6;
+  padding: 8px 10px;
+  border-radius: 8px;
+  max-width: 85%;
+}
+
+.user-message {
+  background-color: #dbeafe;
+  align-self: flex-end;
+}
+
+.chatbot-options {
+  border-top: 1px solid #e5e7eb;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chatbot-options button {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+
+.chatbot-options button:hover {
+  background-color: #e0e7ff;
+}
+/* --- Botão de áudio do chatbot --- */
+.bot-message {
+  position: relative;
+  background-color: #f3f4f6;
+  padding: 8px 30px 8px 10px;
+  border-radius: 8px;
+  max-width: 85%;
+}
+
+.bot-message .bot-audio {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #2563eb;
+  transition: 0.2s;
+}
+
+.bot-message .bot-audio:hover {
+  color: #1e40af;
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .postos, .mapa {
+    width: 100%;
+  }
+
+  .mapa {
+    margin-top: 2rem;
+  }
+
+}
