@@ -118,6 +118,17 @@ th, td {
   background-color: #2563eb;
 }
 
+/* Adicionar postos */
+
+
+
+button.cadastro:hover {
+  background-color: #059669;
+}
+
+/* usa o mesmo modal.css da denúncia */
+
+
 /* GRUPO COMUNITÁRIO */
 .grupo {
   background-color: #1e293b;

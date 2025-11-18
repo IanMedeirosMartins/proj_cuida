@@ -1,9 +1,11 @@
-// server.js (Na pasta raiz, substitui o antigo index.js)
+// server.js (Na pasta raiz)
 const restify = require('restify');
+const path = require('path'); // Módulo 'path' importado corretamente
+
 const database = require('./db');
 const applyRoutes = require('./routes/apiRoutes');
 
-// Importa os Models para garantir que sejam carregados e sincronizados
+// Importa os Models
 const Usuario = require('./models/usuario');
 const PostoDeSaude = require('./models/postoDeSaude');
 const Disponibilidade = require('./models/disponibilidade');
@@ -11,8 +13,7 @@ const Disponibilidade = require('./models/disponibilidade');
 // --- 1. Sincronização do Banco de Dados ---
 async function setupDatabase() {
     try {
-        // Sincroniza todos os modelos (cria as tabelas e suas relações)
-        await database.sync({ force: false }); // Use 'force: true' apenas para resetar o BD durante o desenvolvimento
+        await database.sync({ force: false }); 
         console.log('Database e tabelas sincronizadas com sucesso.');
     } catch (error) {
         console.error('❌ Erro ao sincronizar database:', error);
@@ -27,17 +28,16 @@ const server = restify.createServer({
 });
 
 // Middlewares essenciais
-server.use(restify.plugins.bodyParser()); // Processa o JSON no corpo da requisição
+server.use(restify.plugins.bodyParser()); 
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 
-// ⚠️ Permite requisições de origens diferentes (CORS) - ESSENCIAL para o Front-end
+// Permite requisições de origens diferentes (CORS)
 server.pre(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*'); // Permite qualquer domínio
+    res.header('Access-Control-Allow-Origin', '*'); 
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     
-    // Responde a requisições OPTIONS imediatamente (pré-voo CORS)
     if (req.method === 'OPTIONS') {
         res.send(200);
         return next(false);
@@ -46,12 +46,23 @@ server.pre(function(req, res, next) {
 });
 
 
-// --- 3. Aplica as Rotas ---
+// --- 3. Aplica as Rotas (APIs) ---
+// As rotas API (/api/...) devem vir primeiro para serem priorizadas
 applyRoutes(server);
 
-// --- 4. Iniciar o Servidor ---
+// --- 4. Servir Arquivos Estáticos ---
+// Serve a pasta 'html' como raiz do site (/)
+// CORREÇÃO: Substituído o RegExp por '/*'
+server.get('/*', restify.plugins.serveStatic({ 
+    directory: path.join(__dirname, 'html'), 
+    default: 'index.html',
+    appendRequestPath: false
+}));
+
+
+// --- 5. Iniciar o Servidor ---
 const PORT = 3000;
 server.listen(PORT, function() {
     console.log(`✅ Servidor ${server.name} rodando em http://localhost:${PORT}`);
-    console.log(`Endpoints disponíveis em /api/...`);
+    console.log(`Endpoints API em /api/...`);
 });
