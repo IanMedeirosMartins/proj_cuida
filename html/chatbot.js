@@ -4,57 +4,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatbotOptions = document.getElementById("chatbot-options");
   const openChatButton = document.getElementById("open-chatbot");
 
-  // Perguntas e respostas
+  if (!chatbotContainer || !chatbotBody || !chatbotOptions || !openChatButton) {
+    console.error("Erro: elementos do chatbot não encontrados");
+    return;
+  }
+
+  // ===== Dados =====
   const perguntas = [
-    { pergunta: "📍 Onde posso encontrar insulina disponível?", resposta: "Você pode verificar na aba de mapa do site os postos com insulina disponível. O sistema é atualizado frequentemente pela comunidade." },
-    { pergunta: "💊 O que fazer se faltar tiras de glicose?", resposta: "Caso falte tiras de glicose, você pode denunciar pelo botão Denunciar falta, para alertar outros usuários e as autoridades locais." },
-    { pergunta: "📱 Como entro no grupo comunitário?", resposta: "Você pode clicar no botão 'Entrar no Grupo Comunitário' na seção de Grupo Comunitário da página inicial." },
-    { pergunta: "🩸 O que é o Alerta Diabetes Comunitário?", resposta: "É uma iniciativa comunitária que conecta pacientes diabéticos e facilita o compartilhamento de informações sobre medicamentos nos postos de saúde." },
-    { pergunta: "📞 Como posso falar com o suporte?", resposta: "Acesse a página 'Contato' e envie uma mensagem pelo formulário. Responderemos o mais breve possível." },
+    {
+      pergunta: "📍 Onde posso encontrar insulina disponível?",
+      resposta: "Você pode verificar na aba de mapa do site os postos com insulina disponível."
+    },
+    {
+      pergunta: "💊 O que fazer se faltar tiras de glicose?",
+      resposta: "Use o botão de denúncia para alertar outros usuários."
+    },
+    {
+      pergunta: "📱 Como entro no grupo comunitário?",
+      resposta: "Clique no botão 'Entrar no Grupo Comunitário' na página inicial."
+    },
+    {
+      pergunta: "🩸 O que é o Alerta Diabetes Comunitário?",
+      resposta: "É uma plataforma que conecta pacientes e compartilha informações sobre medicamentos."
+    },
+    {
+      pergunta: "📞 Como posso falar com o suporte?",
+      resposta: "Acesse a página de contato e envie uma mensagem."
+    }
   ];
 
-  // Exibir perguntas no painel
-  perguntas.forEach(p => {
-    const btn = document.createElement("button");
-    btn.textContent = p.pergunta;
-    btn.addEventListener("click", () => enviarPergunta(p));
-    chatbotOptions.appendChild(btn);
-  });
+  // ===== Funções =====
+  function criarMensagem(texto, tipo) {
+    const msg = document.createElement("div");
+    msg.classList.add(tipo === "user" ? "user-message" : "bot-message");
 
-  // Função principal de envio
-  function enviarPergunta(p) {
-    const userMsg = document.createElement("div");
-    userMsg.classList.add("user-message");
-    userMsg.textContent = p.pergunta;
-    chatbotBody.appendChild(userMsg);
+    const span = document.createElement("span");
+    span.textContent = texto;
 
-    setTimeout(() => {
-      const botMsg = document.createElement("div");
-      botMsg.classList.add("bot-message");
+    msg.appendChild(span);
 
-      // Cria o texto da resposta
-      const texto = document.createElement("span");
-      texto.textContent = p.resposta;
-
-      // Cria o botão de áudio 🔊
+    if (tipo === "bot") {
       const audioBtn = document.createElement("button");
       audioBtn.classList.add("bot-audio");
       audioBtn.innerHTML = "🔊";
       audioBtn.title = "Ouvir resposta";
 
-      // Ao clicar, fala a resposta
-      audioBtn.addEventListener("click", () => falar(p.resposta));
+      audioBtn.addEventListener("click", () => falar(texto));
+      msg.appendChild(audioBtn);
+    }
 
-      // Adiciona texto + botão
-      botMsg.appendChild(texto);
-      botMsg.appendChild(audioBtn);
-      chatbotBody.appendChild(botMsg);
+    chatbotBody.appendChild(msg);
+    scrollChat();
+  }
 
-      chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  function scrollChat() {
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  }
+
+  function enviarPergunta(p) {
+    criarMensagem(p.pergunta, "user");
+
+    setTimeout(() => {
+      criarMensagem(p.resposta, "bot");
     }, 500);
   }
 
-  // 🎤 Função de fala
   function falar(texto) {
     if (!window.speechSynthesis) return;
 
@@ -64,23 +78,32 @@ document.addEventListener("DOMContentLoaded", () => {
     fala.rate = 1;
 
     const vozes = window.speechSynthesis.getVoices();
-    const voz = vozes.find(v => v.lang === "pt-BR" && v.name.toLowerCase().includes("female"))
-             || vozes.find(v => v.lang === "pt-BR")
-             || vozes[0];
-    if (voz) fala.voice = voz;
+
+    // Melhor seleção de voz
+    const vozPt = vozes.find(v => v.lang.includes("pt-BR")) || vozes[0];
+    if (vozPt) fala.voice = vozPt;
 
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(fala);
   }
 
-  // Corrige carregamento de vozes
+  function toggleChat() {
+    chatbotContainer.style.display =
+      chatbotContainer.style.display === "flex" ? "none" : "flex";
+  }
+
+  // ===== Inicialização =====
+  perguntas.forEach(p => {
+    const btn = document.createElement("button");
+    btn.textContent = p.pergunta;
+    btn.addEventListener("click", () => enviarPergunta(p));
+    chatbotOptions.appendChild(btn);
+  });
+
+  openChatButton.addEventListener("click", toggleChat);
+
+  // Corrigir carregamento de vozes
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
-
-  // Mostrar / esconder chat
-  openChatButton.addEventListener("click", () => {
-    chatbotContainer.style.display =
-      chatbotContainer.style.display === "flex" ? "none" : "flex";
-  });
 });

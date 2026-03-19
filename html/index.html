@@ -19,7 +19,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="..assets/coracao.png" alt=""> <h1>Alerta Diabetes Comunitário</h1>
+      <img src="../assets/coracao.png" alt=""> <h1>Alerta Diabetes Comunitário</h1>
     </div>
     <nav>
       <a href="sobre.html">Sobre</a>
@@ -38,24 +38,28 @@
       <table>
         <thead>
           <tr>
-            <th>Posto de Saúde</th>
+            <th>Posto</th>
+            <th>Rua</th>
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>PS Santa Rosa</td>
-            <td><span class="status disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td>PS Engenho do Meio</td>
-            <td><span class="status disponivel">Disponível</span></td>
-          </tr>
-          <tr>
-            <td>PS Sadia</td>
-            <td><span class="status falta">Falta Insulina</span></td>
-          </tr>
-        </tbody>
+      <tbody id="tabelaPostos">
+        <tr>
+          <td>PS Santa Rosa</td>
+          <td>Rua A</td>
+          <td><span class="status disponivel">Disponível</span></td>
+        </tr>
+        <tr>
+          <td>PS Engenho do Meio</td>
+          <td>Rua B</td>
+          <td><span class="status disponivel">Disponível</span></td>
+        </tr>
+        <tr>
+          <td>PS Sadia</td>
+          <td>Rua C</td>
+          <td><span class="status falta">Falta</span></td>
+        </tr>
+    </tbody>
       </table>
 
       <button class="denunciar" id="btnDenunciar">🚨 Denunciar falta</button>
@@ -100,9 +104,6 @@
       <label>Rua do posto</label>
       <input type="text" id="cad_rua" required>
 
-      <label>Ponto de referência</label>
-      <input type="text" id="cad_ref" required>
-
       <label>Possui insulina?</label>
       <select id="cad_insulina" required>
         <option value="">Selecione...</option>
@@ -123,7 +124,9 @@
         <p>
           Compartilhe faltas de insulina e tiras, confirme disponibilidades e troque experiências e apoio.
         </p>
-        <button class="whatsapp-btn">💬 Entrar no Grupo Comunitário</button>
+        <a href="https://wa.me/5599999999999" target="_blank">
+  <button class="whatsapp-btn">💬 Entrar no Grupo Comunitário</button>
+</a>
       </div>
     </section>
 
@@ -154,9 +157,11 @@
   
   <!-- 2. Depois os outros scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="pesquisa.js"></script>
-  <script src="denuncia.js"></script>
-  <script src="mapa.js"></script>
-  <script src="cadastro.js" defer></script>
+
+<script src="chatbot.js" defer></script>
+<script src="denuncia.js" defer></script>
+<script src="cadastro.js" defer></script>
+<script src="mapa.js" defer></script>
+<script src="pesquisa.js" defer></script>
 </body>
 </html>

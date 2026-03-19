@@ -1,15 +1,18 @@
-// Exibir texto adicional quando clicar em "Saiba Mais"
 document.addEventListener("DOMContentLoaded", () => {
   const botao = document.getElementById("saibaMais");
   const textoExtra = document.getElementById("textoExtra");
 
+  // Segurança: evita erro se não encontrar elementos
+  if (!botao || !textoExtra) return;
+
   botao.addEventListener("click", () => {
-    if (textoExtra.style.display === "none") {
-      textoExtra.style.display = "block";
-      botao.textContent = "Mostrar menos";
-    } else {
-      textoExtra.style.display = "none";
-      botao.textContent = "Saiba Mais";
-    }
+    // Alterna a classe
+    textoExtra.classList.toggle("hidden");
+
+    // Verifica se está escondido
+    const escondido = textoExtra.classList.contains("hidden");
+
+    // Atualiza o texto do botão
+    botao.textContent = escondido ? "Saiba Mais" : "Mostrar menos";
   });
 });
