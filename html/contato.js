@@ -3,13 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("formContato");
   const resposta = document.getElementById("resposta");
 
-  // 🔧 Cole aqui seus dados do EmailJS:
-  const SERVICE_ID = "seu_service_id";
-  const TEMPLATE_ID = "seu_template_id";
-  const PUBLIC_KEY = "seu_public_key";
+  // 🔥 Seus dados reais do EmailJS
+  const SERVICE_ID = "service_feedback";
+  const TEMPLATE_ID = "template_ws6622a"; // ⚠️ você ainda precisa colocar
+  const PUBLIC_KEY = "4iwJX88iwwOGPIdIs";
 
-  // Inicializa o EmailJS
-  emailjs.init(PUBLIC_KEY);
+  // Inicializa o EmailJS (forma correta)
+  emailjs.init({
+    publicKey: PUBLIC_KEY
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
