@@ -2,39 +2,58 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alerta Diabetes Comunitário</title>
-  
-  <!-- CSS do Leaflet PRIMEIRO -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+e2QPrY2k1rjvGkH+gQ1qLx0v7gqS6qHk0sKQ1Y+I="
-    crossorigin=""
-  />
-  
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title></title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
-  <header>
-    <div class="logo">
-      <img src="../assets/coracao.png" alt=""> <h1>Alerta Diabetes Comunitário</h1>
+
+<header>
+  <div class="logo">
+    <img src="../assets/coracao.png">
+    <h1>Alerta Diabetes</h1>
+  </div>
+
+  <nav>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h2>Encontre insulina perto de você 💚</h2>
+    <p>Veja postos disponíveis e ajude denunciando faltas.</p>
+  </div>
+
+  <section class="postos">
+
+    <h2>Postos</h2>
+
+    <!-- BUSCA -->
+    <div class="search-bar">
+      <input type="text" placeholder="Digite o nome do posto..." />
+      <button>🔍</button>
     </div>
-    <nav>
-      <a href="sobre.html">Sobre</a>
-      <a href="contato.html">Contato</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="postos">
-      <h2>Postos Prioritários</h2>
-      <div class="search-bar">
-        <input type="text" placeholder="Pesquisar postos" />
-        <button>🔍</button>
-      </div>
+    <!-- AÇÕES -->
+    <div class="acoes">
+      <button class="btn destaque" id="btnDenunciar">
+        🚨 Falta de medicamento
+      </button>
 
+      <button class="btn secundario" id="btnCadastro">
+        ➕ Novo posto
+      </button>
+    </div>
+
+    <!-- TABELA -->
+    <div class="card">
       <table>
         <thead>
           <tr>
@@ -43,124 +62,65 @@
             <th>Status</th>
           </tr>
         </thead>
-      <tbody id="tabelaPostos">
-        <tr>
-          <td>PS Santa Rosa</td>
-          <td>Rua A</td>
-          <td><span class="status disponivel">Disponível</span></td>
-        </tr>
-        <tr>
-          <td>PS Engenho do Meio</td>
-          <td>Rua B</td>
-          <td><span class="status disponivel">Disponível</span></td>
-        </tr>
-        <tr>
-          <td>PS Sadia</td>
-          <td>Rua C</td>
-          <td><span class="status falta">Falta</span></td>
-        </tr>
-    </tbody>
+
+        <tbody id="tabelaPostos">
+          <tr>
+            <td>PS Santa Rosa</td>
+            <td>Rua A</td>
+            <td><span class="status disponivel">✅ Disponível</span></td>
+          </tr>
+          <tr>
+            <td>PS Engenho</td>
+            <td>Rua B</td>
+            <td><span class="status disponivel">✅ Disponível</span></td>
+          </tr>
+          <tr>
+            <td>PS Sadia</td>
+            <td>Rua C</td>
+            <td><span class="status falta">❌ Em falta</span></td>
+          </tr>
+        </tbody>
       </table>
+    </div>
 
-      <button class="denunciar" id="btnDenunciar">🚨 Denunciar falta</button>
-      <button class="denunciar" id="btnCadastro">➕ Cadastrar Posto</button>
+    <!-- GRUPO -->
+    <div class="grupo">
+      <h3>Grupo da Comunidade</h3>
+      <p>Compartilhe informações e ajude outras pessoas.</p>
 
-      <!-- Modal de denúncia -->
-      <div id="modalDenuncia" class="modal">
-        <div class="modal-content">
-          <span id="fecharModal" class="fechar">&times;</span>
-          <h3>Denunciar falta de medicamento</h3>
-          <form id="formDenuncia">
-            <label>Posto de Saúde</label>
-            <input type="text" name="posto" id="posto" placeholder="Ex: PS Casa Amarela" required />
+      <a href="https://wa.me/5599999999999" target="_blank">
+        <button class="whatsapp-btn">💬 Entrar no grupo</button>
+      </a>
+    </div>
 
-            <label>Medicamento em falta</label>
-            <select name="medicamento" id="medicamento" required>
-              <option value="">Selecione...</option>
-              <option value="Insulina">Insulina</option>
-              <option value="Tiras de glicose">Tiras de glicose</option>
-              <option value="Outro">Outro</option>
-            </select>
+  </section>
 
-            <label>Observações</label>
-            <textarea name="mensagem" id="mensagem" rows="3" placeholder="Ex: falta desde segunda-feira"></textarea>
+  <!-- MAPA -->
+  <aside class="mapa">
+    <h3>Mapa</h3>
+    <div id="map"></div>
+  </aside>
 
-            <button type="submit">Enviar Denúncia</button>
-          </form>
-          <p id="respostaDenuncia"></p>
-        </div>
-      </div>
+</main>
 
-      <!-- Modal de cadastro -->
-<div id="modalCadastro" class="modal">
-  <div class="modal-content">
-    <span id="fecharCadastro" class="fechar">&times;</span>
-    <h3>Cadastrar novo posto</h3>
-
-    <form id="formCadastro">
-      <label>Nome do posto</label>
-      <input type="text" id="cad_nome" required>
-
-      <label>Rua do posto</label>
-      <input type="text" id="cad_rua" required>
-
-      <label>Possui insulina?</label>
-      <select id="cad_insulina" required>
-        <option value="">Selecione...</option>
-        <option value="Disponível">Sim</option>
-        <option value="Falta">Não</option>
-      </select>
-
-      <button type="submit">Cadastrar</button>
-    </form>
-
-    <p id="respostaCadastro"></p>
+<!-- CHATBOT -->
+<div class="chatbot-container" id="chatbot-container">
+  <div id="chatbot-header">🤖 Assistente</div>
+  <div class="chatbot-body">
+    <div class="bot-message">
+      👋 Precisa de ajuda para encontrar insulina?
+    </div>
   </div>
 </div>
 
+<button id="open-chatbot" class="chatbot-button">💬</button>
 
-      <div class="grupo">
-        <h3>Grupo Comunitário</h3>
-        <p>
-          Compartilhe faltas de insulina e tiras, confirme disponibilidades e troque experiências e apoio.
-        </p>
-        <a href="https://wa.me/5599999999999" target="_blank">
-  <button class="whatsapp-btn">💬 Entrar no Grupo Comunitário</button>
-</a>
-      </div>
-    </section>
-
-    <aside class="mapa">
-      <h3>Mapa de Postos</h3>
-      <div id="map"></div>
-    </aside>
-  </main>
-  <!-- CHATBOT -->
-<div id="chatbot-container" class="chatbot-container">
-  <div id="chatbot-header">🤖 Alerta Diabetes - Assistente</div>
-  <div id="chatbot-body" class="chatbot-body">
-    <div class="bot-message">Olá! 😊 Sou o assistente do Alerta Diabetes Comunitário.<br>Posso te ajudar com alguma dessas dúvidas?</div>
-  </div>
-  <div id="chatbot-options" class="chatbot-options">
-    <!-- As perguntas aparecerão aqui -->
-  </div>
-</div>
-
-<!-- Botão para abrir o chat -->
-<button id="open-chatbot" class="chatbot-button">💬 Ajuda</button>
-
-
- <!-- Substitua o script do Leaflet por este: -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
-  
-  <!-- 2. Depois os outros scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <script src="chatbot.js" defer></script>
 <script src="denuncia.js" defer></script>
 <script src="cadastro.js" defer></script>
 <script src="mapa.js" defer></script>
 <script src="pesquisa.js" defer></script>
+
 </body>
 </html>

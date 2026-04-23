@@ -1,3 +1,11 @@
+:root {
+  --cor-principal: #4CAF50;
+  --cor-secundaria: #2E7D32;
+  --cor-fundo: #f8fafc;
+  --cor-texto: #1f2937;
+}
+
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +13,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* BODY */
 body {
-  background-color: #f7fafd;
-  color: #1f2937;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
 }
 
 /* HEADER */
@@ -16,407 +25,167 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 3rem;
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* CONTAINER */
+.container {
+  padding: 2rem 3rem;
 }
 
-.logo img {
-  width: 40px;
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
-nav a {
-  margin-left: 20px;
-  color: #1f2937;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-nav a:hover {
-  color: #2563eb;
-}
-
-/* MAIN LAYOUT */
+/* LAYOUT */
 main {
   display: flex;
-  justify-content: space-between;
-  padding: 2rem 3rem;
+  gap: 2rem;
 }
 
 .postos {
   width: 60%;
 }
 
+.mapa {
+  width: 40%;
+}
+
+/* BUSCA */
 .search-bar {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  margin: 15px 0;
 }
 
 .search-bar input {
-  width: 250px;
-  padding: 8px 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px 0 0 6px;
-  outline: none;
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #ccc;
 }
 
 .search-bar button {
-  padding: 8px 12px;
-  border: 1px solid #cbd5e1;
-  border-left: none;
-  background-color: #f1f5f9;
-  border-radius: 0 6px 6px 0;
+  padding: 10px;
+  background: var(--cor-principal);
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+}
+
+/* AÇÕES */
+.acoes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  color: white;
   cursor: pointer;
 }
 
+.destaque {
+  background: #ef4444;
+}
+
+.secundario {
+  background: #22c55e;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* TABELA */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1rem;
 }
 
 th, td {
-  padding: 10px;
-  border-bottom: 1px solid #e5e7eb;
-  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
 }
 
+tr:hover {
+  background: #f9fafb;
+}
+
+/* STATUS */
 .status {
   padding: 5px 10px;
-  border-radius: 8px;
+  border-radius: 20px;
   color: white;
-  font-weight: bold;
 }
 
 .disponivel {
-  background-color: #22c55e; /* verde */
+  background: #22c55e;
 }
 
 .falta {
-  background-color: #ef4444; /* vermelho */
+  background: #ef4444;
 }
 
-.denunciar {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 1.5rem;
-}
-
-.denunciar:hover {
-  background-color: #2563eb;
-}
-
-/* Adicionar postos */
-
-
-
-button.cadastro:hover {
-  background-color: #059669;
-}
-
-/* usa o mesmo modal.css da denúncia */
-
-
-/* GRUPO COMUNITÁRIO */
+/* GRUPO */
 .grupo {
-  background-color: #1e293b;
+  margin-top: 20px;
+  background: #1e293b;
   color: white;
-  padding: 1.5rem;
+  padding: 20px;
   border-radius: 12px;
 }
 
 .whatsapp-btn {
-  margin-top: 1rem;
-  background-color: #22c55e;
+  margin-top: 10px;
+  background: #22c55e;
+  padding: 10px;
   border: none;
+  border-radius: 8px;
   color: white;
-  font-weight: 600;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.whatsapp-btn:hover {
-  background-color: #16a34a;
 }
 
 /* MAPA */
-.mapa {
-  width: 35%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 #map {
   width: 100%;
-  height: 500px; /* Aumentei a altura */
-  min-height: 500px;
+  height: 500px;
   border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  flex-grow: 1; /* Ocupa todo o espaço disponível */
 }
 
-.conteudo {
-  padding: 2rem 3rem;
-  display: flex;
-  justify-content: center;
-}
-
-.card-sobre,
-.card-contato {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  max-width: 700px;
-  width: 100%;
-}
-
-.card-sobre h2,
-.card-contato h2 {
-  color: #1f2937;
-  margin-bottom: 1rem;
-}
-
-.card-sobre p,
-.card-contato p {
-  color: #374151;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-#saibaMais,
-.card-contato button {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-#saibaMais:hover,
-.card-contato button:hover {
-  background-color: #2563eb;
-}
-
-.card-contato form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.card-contato input,
-.card-contato textarea {
-  padding: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  outline: none;
-}
-
-.mensagem-sucesso {
-  margin-top: 1rem;
-  font-weight: 600;
-}
-/* --- Modal denúncia --- */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.modal-content h3 {
-  margin-bottom: 10px;
-  color: #1f2937;
-}
-
-.modal-content input,
-.modal-content select,
-.modal-content textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-}
-
-.modal-content button {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.modal-content button:hover {
-  background-color: #dc2626;
-}
-
-.fechar {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-  color: #9ca3af;
-}
-
-.fechar:hover {
-  color: #000;
-}
-
-#respostaDenuncia {
-  margin-top: 10px;
-  font-weight: 600;
-}
-/* --- CHATBOT --- */
+/* CHATBOT */
 .chatbot-button {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #00ff15;
+  background: #16a34a;
   color: white;
-  border: none;
-  border-radius: 40%;
-  width: 65px;
-  height: 65px;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  transition: 0.3s;
-  z-index: 1000;
-}
-
-.chatbot-button:hover {
-  background-color:#07af07;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
 }
 
 .chatbot-container {
   position: fixed;
   bottom: 100px;
-  left: 30px;
-  width: 320px;
-  background-color: #fff;
+  left: 20px;
+  width: 300px;
+  background: white;
   border-radius: 10px;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-  display: none;
-  flex-direction: column;
-  z-index: 999;
-  font-family: "Arial", sans-serif;
-}
-
-#chatbot-header {
-  background-color: #07af07;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.chatbot-body {
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.bot-message,
-.user-message {
-  background-color: #f3f4f6;
-  padding: 8px 10px;
-  border-radius: 8px;
-  max-width: 85%;
-}
-
-.user-message {
-  background-color: #dbeafe;
-  align-self: flex-end;
-}
-
-.chatbot-options {
-  border-top: 1px solid #e5e7eb;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.chatbot-options button {
-  background-color: #f3f4f6;
-  border: none;
-  border-radius: 6px;
-  padding: 8px;
-  cursor: pointer;
-  text-align: left;
-  transition: 0.2s;
-}
-
-.chatbot-options button:hover {
-  background-color: #e0e7ff;
-}
-/* --- Botão de áudio do chatbot --- */
-.bot-message {
-  position: relative;
-  background-color: #f3f4f6;
-  padding: 8px 30px 8px 10px;
-  border-radius: 8px;
-  max-width: 85%;
-}
-
-.bot-message .bot-audio {
-  position: absolute;
-  right: 6px;
-  bottom: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  color: #2563eb;
-  transition: 0.2s;
-}
-
-.bot-message .bot-audio:hover {
-  color: #1e40af;
-  transform: scale(1.1);
-}
-
-.hidden {
   display: none;
 }
 
-
+/* RESPONSIVO */
 @media (max-width: 768px) {
   main {
     flex-direction: column;
@@ -426,8 +195,7 @@ button.cadastro:hover {
     width: 100%;
   }
 
-  .mapa {
-    margin-top: 2rem;
+  .acoes {
+    flex-direction: column;
   }
-
 }
