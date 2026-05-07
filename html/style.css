@@ -1,201 +1,59 @@
-:root {
-  --cor-principal: #4CAF50;
-  --cor-secundaria: #2E7D32;
-  --cor-fundo: #f8fafc;
-  --cor-texto: #1f2937;
-}
-
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-/* BODY */
-body {
-  background-color: var(--cor-fundo);
-  color: var(--cor-texto);
-}
-
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 3rem;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* CONTAINER */
-.container {
-  padding: 2rem 3rem;
-}
-
-/* HERO */
-.hero {
-  background: linear-gradient(135deg, #4CAF50, #2E7D32);
-  color: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-/* LAYOUT */
-main {
-  display: flex;
-  gap: 2rem;
-}
-
-.postos {
-  width: 60%;
-}
-
-.mapa {
-  width: 40%;
-}
-
-/* BUSCA */
-.search-bar {
-  display: flex;
-  margin: 15px 0;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px 0 0 8px;
-  border: 1px solid #ccc;
-}
-
-.search-bar button {
-  padding: 10px;
-  background: var(--cor-principal);
-  color: white;
   border: none;
-  border-radius: 0 8px 8px 0;
-}
-
-/* AÇÕES */
-.acoes {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.btn {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  color: white;
+  border-radius: 10px;
   cursor: pointer;
-}
-
-.destaque {
-  background: #ef4444;
-}
-
-.secundario {
-  background: #22c55e;
-}
-
-/* CARD */
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-/* TABELA */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
-}
-
-tr:hover {
-  background: #f9fafb;
-}
-
-/* STATUS */
-.status {
-  padding: 5px 10px;
-  border-radius: 20px;
+  background: #1d8f6a;
   color: white;
 }
 
-.disponivel {
-  background: #22c55e;
-}
-
-.falta {
-  background: #ef4444;
-}
-
-/* GRUPO */
-.grupo {
-  margin-top: 20px;
-  background: #1e293b;
-  color: white;
+footer {
+  margin-top: 40px;
+  text-align: center;
   padding: 20px;
-  border-radius: 12px;
-}
-
-.whatsapp-btn {
-  margin-top: 10px;
-  background: #22c55e;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
+  background: #1d8f6a;
   color: white;
 }
 
-/* MAPA */
-#map {
-  width: 100%;
-  height: 500px;
-  border-radius: 10px;
-}
-
-/* CHATBOT */
-.chatbot-button {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: #16a34a;
-  color: white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-}
-
-.chatbot-container {
-  position: fixed;
-  bottom: 100px;
-  left: 20px;
-  width: 300px;
-  background: white;
-  border-radius: 10px;
-  display: none;
-}
-
-/* RESPONSIVO */
-@media (max-width: 768px) {
-  main {
-    flex-direction: column;
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
   }
 
-  .postos, .mapa {
-    width: 100%;
+  nav {
+    margin-top: 15px;
+  }
+
+  #map {
+    height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+
+  .search-bar {
+    flex-direction: column;
   }
 
   .acoes {
     flex-direction: column;
   }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  
 }

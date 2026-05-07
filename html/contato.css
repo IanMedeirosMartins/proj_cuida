@@ -1,0 +1,44 @@
+.contato-container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.contato-banner {
+  background: linear-gradient(135deg, #1d8f6a, #35b48b);
+  color: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contato-banner h1 {
+  font-size: 34px;
+}
+
+.contato-form {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contato-form input,
+.contato-form textarea {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.contato-form button {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #1d8f6a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

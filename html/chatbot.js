@@ -106,4 +106,5 @@ document.addEventListener("DOMContentLoaded", () => {
   window.speechSynthesis.onvoiceschanged = () => {
     window.speechSynthesis.getVoices();
   };
+  
 });
