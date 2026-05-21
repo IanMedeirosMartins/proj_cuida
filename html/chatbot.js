@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.speechSynthesis.speak(fala);
   }
 
-  function toggleChat() {
+  function toggleChat(event) {
+    if (event) event.stopPropagation();
     chatbotContainer.style.display =
       chatbotContainer.style.display === "flex" ? "none" : "flex";
   }
@@ -101,6 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   openChatButton.addEventListener("click", toggleChat);
+
+  // Fechar ao clicar fora
+  document.addEventListener("click", (event) => {
+    if (!chatbotContainer.contains(event.target) && !openChatButton.contains(event.target)) {
+      chatbotContainer.style.display = "none";
+    }
+  });
+
+  // Impedir que cliques dentro do chat fechem ele
+  chatbotContainer.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
 
   // Corrigir carregamento de vozes
   window.speechSynthesis.onvoiceschanged = () => {
