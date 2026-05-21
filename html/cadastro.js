@@ -89,7 +89,7 @@ if (!nomeInput || !ruaInput || !insulinaInput) {
       <td>${nome}</td>
       <td>${rua}</td>
       <td>
-        <span class="status ${insulina === "Disponível" ? "disponivel" : "falta"}">
+        <span class="status ${insulina === "Disponível" ? "✅disponivel" : "❌falta"}">
           ${insulina}
         </span>
       </td>
