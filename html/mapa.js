@@ -38,10 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Lista de postos
     const postos = [
-      { nome: "PS Santa Rosa", lat: -8.0126, lng: -34.93, status: "Disponível" },
-      { nome: "PS Engenho do Meio", lat: -8.0284, lng: -34.9206, status: "Disponível" },
-      { nome: "PS Sadia", lat: -8.04, lng: -34.928, status: "Falta Insulina" },
-      { nome: "PS Casa Amarela", lat: -8.0333, lng: -34.93, status: "Falta Insulina" },
+      { nome: "Policlínica Agamenon Magalhães", lat: -8.0775, lng: -34.9064, status: "Disponível" },
+      { nome: "Policlínica Lessa de Andrade", lat: -8.0513, lng: -34.9097, status: "Disponível" },
+      { nome: "Policlínica Waldemar de Oliveira", lat: -8.0489, lng: -34.8835, status: "Falta Insulina" },
+      { nome: "Policlínica Gouveia de Barros", lat: -8.0612, lng: -34.8874, status: "Disponível" },
+      { nome: "Policlínica Clementino Fraga", lat: -8.0262, lng: -34.9198, status: "Disponível" },
+      { nome: "Policlínica Arnaldo Marques", lat: -8.1258, lng: -34.9336, status: "Falta Insulina" },
+      { nome: "Policlínica Amaury de Medeiros", lat: -8.0195, lng: -34.8892, status: "Falta Insulina" },
     ];
 
     // Adiciona marcadores no mapa

@@ -13,7 +13,7 @@ const Disponibilidade = require('./models/disponibilidade');
 // --- 1. Sincronização do Banco de Dados ---
 async function setupDatabase() {
     try {
-            await database.sync({ force: false }); 
+            await database.sync({ alter: true }); 
                     console.log('Database e tabelas sincronizadas com sucesso.');
                         } catch (error) {
                                 console.error('❌ Erro ao sincronizar database:', error);
@@ -55,7 +55,7 @@ async function setupDatabase() {
                                                                                         // CORREÇÃO: Substituído o RegExp por '/*'
                                                                                         server.get('/*', restify.plugins.serveStatic({ 
                                                                                             directory: path.join(__dirname, 'html'), 
-                                                                                                default: 'index.html',
+                                                                default: 'login.html',
                                                                                                     appendRequestPath: false
                                                                                                     }));
 

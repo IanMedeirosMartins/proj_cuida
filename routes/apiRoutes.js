@@ -2,9 +2,13 @@
 const usuarioController = require('../controllers/usuarioController');
 const postoController = require('../controllers/postoController');
 const dispController = require('../controllers/disponibilidadeController');
+const authController = require('../controllers/authController');
 
 // Função para aplicar todas as rotas ao servidor Restify
 module.exports = (server) => {
+    // Rota de Autenticação
+    server.post('/api/auth/google', authController.loginGoogle);
+
     // Rotas de Usuário (Autocadastro)
     server.post('/api/usuarios', usuarioController.cadastrarUsuario);
     server.get('/api/usuarios', usuarioController.listarUsuarios);

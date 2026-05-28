@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Cuida!</title>
+  <title>Cuida! - Consulta</title>
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -22,15 +20,9 @@
 
 <body>
   <header class="navbar">
-
     <div class="logo">
-
       <img src="coracao.png" alt="Logo">
-
-      <h1>
-        Cuida!
-      </h1>
-
+      <h1>Cuida!</h1>
     </div>
 
     <nav>
@@ -40,50 +32,30 @@
       <a href="contato.html">Contato</a>
       <div id="google-user" class="user-menu" style="display: none; align-items: center; gap: 10px; margin-left: 15px;"></div>
     </nav>
-
   </header>
 
   <main class="container">
     <section class="postos">
       <div class="hero">
-        <h2>
-          Encontre insulina perto de você 💚
-        </h2>
-
-        <p>
-          Consulte postos e denuncie falta de medicamentos.
-        </p>
+        <h2>Encontre insulina perto de você 💚</h2>
+        <p>Consulte postos e denuncie falta de medicamentos.</p>
         <p>Caso tenha alguma dúvida clique no circulo verde no lado direito da tela </p>
-
       </div>
 
       <div class="search-bar">
-
         <input type="text" placeholder="Pesquisar posto...">
-
-        <button>
-          🔍
-        </button>
-
+        <button>🔍</button>
       </div>
 
       <div class="acoes">
-
         <button class="btn destaque" id="btnDenunciar">
           🚨 Denunciar falta
         </button>
-
-        <button class="btn secundario" id="btnCadastro">
-          ➕ Novo posto
-        </button>
-
       </div>
 
       <!-- TABELA -->
       <div class="card">
-
         <table>
-
           <thead>
             <tr>
               <th>Posto</th>
@@ -132,135 +104,53 @@
       </div>
 
       <div class="card">
-
-        <h3>
-          Grupo da Comunidade
-        </h3>
-
-        <p>
-          Compartilhe informações com outras pessoas.
-        </p>
-
+        <h3>Grupo da Comunidade</h3>
+        <p>Compartilhe informações com outras pessoas.</p>
         <a href="https://wa.me/5599999999999" target="_blank">
-
-          <button class="btn secundario">
-            💬 Entrar no grupo
-          </button>
-
+          <button class="btn secundario">💬 Entrar no grupo</button>
         </a>
-
       </div>
-
     </section>
 
     <!-- MAPA -->
     <aside class="mapa card">
-
-      <h2>
-        Mapa de postos
-      </h2>
-
+      <h2>Mapa de postos</h2>
       <div id="map"></div>
-
     </aside>
-
   </main>
-
-  <!-- MODAL CADASTRO -->
-  <div id="modalCadastro" class="modal">
-
-    <div class="modal-content">
-
-      <span id="fecharCadastro" class="fechar">
-        &times;
-      </span>
-
-      <h2>
-        Cadastrar Posto
-      </h2>
-
-      <form id="formCadastro">
-
-        <input type="text" id="cad_nome" placeholder="Nome do posto" required>
-
-        <input type="text" id="cad_rua" placeholder="Rua" required>
-
-        <select id="cad_insulina" required>
-
-          <option value="">
-            Selecione
-          </option>
-
-          <option value="Disponível">
-            Disponível
-          </option>
-
-          <option value="Em falta">
-            Em falta
-          </option>
-
-        </select>
-
-        <button type="submit">
-          Cadastrar
-        </button>
-
-      </form>
-
-      <p id="respostaCadastro"></p>
-
-    </div>
-
-  </div>
 
   <!-- MODAL DENÚNCIA -->
   <div id="modalDenuncia" class="modal">
     <div class="modal-content">
       <span id="fecharModal" class="fechar">&times;</span>
       <h2>Denunciar Falta</h2>
-
       <form id="formDenuncia">
         <input type="text" name="posto" placeholder="Nome do posto" required>
-
         <textarea name="mensagem" placeholder="Descreva a situação" required></textarea>
-
         <button type="submit">Enviar denúncia</button>
       </form>
-
       <p id="respostaDenuncia"></p>
     </div>
   </div>
 
   <!-- CHATBOT -->
   <div class="chatbot-container" id="chatbot-container">
-
-    <div id="chatbot-header">
-      🤖 Assistente
-    </div>
-
+    <div id="chatbot-header">🤖 Assistente</div>
     <div class="chatbot-body" id="chatbot-body">
-
-      <div class="bot-message">
-        👋 Precisa de ajuda para encontrar insulina?
-      </div>
-
+      <div class="bot-message">👋 Precisa de ajuda para encontrar insulina?</div>
     </div>
-
     <div id="chatbot-options" class="chatbot-options"></div>
-
   </div>
 
   <!-- BOTÃO CHATBOT -->
-  <button id="open-chatbot" class="chatbot-button">
-    💬
-  </button>
+  <button id="open-chatbot" class="chatbot-button">💬</button>
+
   <!-- Leaflet JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 
   <!-- Scripts -->
   <script src="chatbot.js" defer></script>
   <script src="denuncia.js" defer></script>
-  <script src="cadastro.js" defer></script>
   <script src="mapa.js" defer></script>
   <script src="pesquisa.js" defer></script>
 
@@ -275,16 +165,15 @@
       if (photo) {
         userDiv.style.display = 'flex';
         userDiv.innerHTML = `
-          <img src="${photo}" alt="Perfil" class="user-photo" style="width: 35px; height: 35px; border-radius: 50%;">
-          <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px;">Sair</button>
+          <img src="${photo}" alt="Perfil" style="width: 35px; height: 35px; border-radius: 50%;">
+          <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px; margin-left: 5px;">Sair</button>
         `;
-        if(linkAdmin) linkAdmin.style.display = 'none'; // Esconde Admin para user comum
+        if(linkAdmin) linkAdmin.style.display = 'none';
       } else if (isAdmin) {
-        if(linkUsuario) linkUsuario.style.display = 'none'; // Esconde link User para Admin
         userDiv.style.display = 'flex';
-        userDiv.innerHTML = `<span style="font-size:0.8em; color:gray;">Modo Admin</span> <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px;">Sair</button>`;
+        userDiv.innerHTML = `<span style="font-size:0.8em; color:gray;">Modo Admin</span> <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px; margin-left: 5px;">Sair</button>`;
       } else {
-        window.location.href = 'login.html'; // Proteção: se não tem nada, volta pro login
+        window.location.href = 'login.html';
       }
     });
 

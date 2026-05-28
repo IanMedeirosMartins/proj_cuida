@@ -39,19 +39,11 @@
     </div>
 
     <nav>
-
-      <a href="index.html">
-        Início
-      </a>
-
-      <a href="sobre.html">
-        Sobre
-      </a>
-
-      <a href="contato.html">
-        Contato
-      </a>
-
+      <a href="index.html" id="link-admin">Painel Admin</a>
+      <a href="usuario.html" id="link-usuario">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <div id="google-user" class="user-menu" style="display: none; align-items: center; gap: 10px; margin-left: 15px;"></div>
     </nav>
 
   </header>
@@ -181,6 +173,31 @@
 
   </footer>
 
-</body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const photo = localStorage.getItem('userPhoto');
+      const isAdmin = localStorage.getItem('isAdmin');
+      const userDiv = document.getElementById('google-user');
+      const linkAdmin = document.getElementById('link-admin');
+      const linkUsuario = document.getElementById('link-usuario');
 
+      if (photo) {
+        userDiv.style.display = 'flex';
+        userDiv.innerHTML = `
+          <img src="${photo}" alt="Perfil" style="width: 35px; height: 35px; border-radius: 50%;">
+          <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px; margin-left: 5px;">Sair</button>
+        `;
+        if(linkAdmin) linkAdmin.style.display = 'none';
+      } else if (isAdmin) {
+        userDiv.style.display = 'flex';
+        userDiv.innerHTML = `<span style="font-size:0.8em; color:gray;">Modo Admin</span> <button onclick="logout()" style="background:none; border:1px solid #ccc; cursor:pointer; padding:2px 5px; border-radius:4px; margin-left: 5px;">Sair</button>`;
+      }
+    });
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
 </html>

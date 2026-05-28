@@ -18,7 +18,10 @@ const Usuario = database.define('usuario', {
         allowNull: false,
         unique: true
     },
-    // Você pode adicionar um campo 'senha' e lógica de hash posteriormente.
+    googleId: {
+        type: Sequelize.STRING,
+        allowNull: true
+    }
 });
 
 module.exports = Usuario;
